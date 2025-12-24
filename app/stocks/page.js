@@ -83,7 +83,7 @@ export default function ProductsPage() {
   // Dynamic unique values from data
   const uniqueStockTypes = useMemo(() => {
     if (!stocks.length) return [];
-    const types = new Set(stocks.map(stock => stock.stockType));
+    const types = new Set(stocks?.map(stock => stock.stockType));
     return ["All Types", ...Array.from(types)];
   }, [stocks]);
 
@@ -226,7 +226,7 @@ export default function ProductsPage() {
           ) : filteredStocks.length === 0 ? (
             <NoProducts />
           ) : (
-            filteredStocks.map((stock) => (
+            filteredStocks?.map((stock) => (
               <div
                 key={stock._id}
                 onClick={() => setSelectedStock(stock)}

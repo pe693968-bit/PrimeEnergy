@@ -7,44 +7,47 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const Testimonial = () => {
-  const testimonials = [
-    {
-      img: "/author-1.jpg",
-      name: "John Doe",
-      profession: "Web Developer",
-      feedback: "For adding learning references, it's really good, because clients often study here too For adding learning references, it's really good, because clients often study here too ",
-    },
-    {
-      img: "/author-2.jpg",
-      name: "Jane Smith",
-      profession: "Graphic Designer",
-      feedback: "For adding learning references, it's really good, because clients often study here too For adding learning references, it's really good, because clients often study here too ",
-    },
-    {
-      img: "/author-3.jpg",
-      name: "Michael Johnson",
-      profession: "Entrepreneur",
-      feedback: "For adding learning references, it's really good, because clients often study here too For adding learning references, it's really good, because clients often study here too ",
-    },
-    {
-      img: "/author-4.jpg",
-      name: "Sarah Williams",
-      profession: "Marketing Expert",
-      feedback: "For adding learning references, it's really good, because clients often study here too For adding learning references, it's really good, because clients often study here too ",
-    },
-    {
-      img: "/author-1.jpg",
-      name: "David Brown",
-      profession: "Software Engineer",
-      feedback: "For adding learning references, it's really good, because clients often study here too For adding learning references, it's really good, because clients often study here too "
-    },
-    {
-      img: "/author-2.jpg",
-      name: "Emily Davis",
-      profession: "Content Creator",
-      feedback: "For adding learning references, it's really good, because clients often study here too For adding learning references, it's really good, because clients often study here too ",
-    },
-  ];
+const testimonials = [
+  {
+    img: "/author-1.jpg",
+    name: "Ali Raza",
+    profession: "Business Owner",
+    feedback: "Switching to solar energy with this company has been an excellent decision. My electricity bills have reduced significantly, and the installation process was smooth and hassle-free.",
+  },
+  {
+    img: "/author-3.jpg",
+    name: "Hina Shah",
+    profession: "School Principal",
+    feedback: "We installed solar panels for our school, and the team was very professional and supportive. The energy savings are remarkable, and it has made our operations much more efficient.",
+  },
+  {
+    img: "/author-2.jpg",
+    name: "Saeed Ahmed",
+    profession: "Farmer",
+    feedback: "The solar systems provided by this company are highly efficient. I can now run my irrigation pumps without worrying about electricity outages, which has improved my productivity significantly.",
+  },
+  {
+    img: "/author-4.jpg",
+    name: "hamza",
+    profession: "Entrepreneur",
+    feedback: "The solar panels are of excellent quality and the customer service is top-notch. They guided me through every step of the process, and the results have been impressive and reliable.",
+  },
+  {
+    img: "/author-5.jpg",
+    name: "Bilal Hussain",
+    profession: "Homeowner",
+    feedback: "Installing solar panels as one of the best investments for my home. Not only have I reduced my electricity costs, but I am also contributing to a cleaner environment.",
+  },
+  {
+    img: "/author-6.jpg",
+    name: "Fatima Noor",
+    profession: "Interior Designer",
+    feedback: "The team handled the entire solar installation efficiently and professionally. Our office now runs mostly on solar energy, saving costs and helping us reduce our carbon footprint.",
+  },
+];
+
+
+
 
   return (
     <div className="py-10 ">
