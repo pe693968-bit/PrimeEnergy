@@ -4,50 +4,43 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const ProjectsContext = createContext();
 
 export const ProjectsProvider = ({ children }) => {
-  const [projects, setProjects] = useState([
-    {
-      title: "Adani Plant - Gujarat",
-      type: "Power Plant",
-      img: "/project-1.jpg",
-    },
-    {
-      title: "Goldi Plant - Gujarat",
-      type: "Solar Plant",
-      img: "/project-2.jpg",
-    },
-    {
-      title: "Adani Plant - Gujarat",
-      type: "Mega Plant",
-      img: "/project-3.jpg",
-    },
-    {
-      title: "Tata Plant - Gujarat",
-      type: "Power Plant",
-      img: "/project-4.jpg",
-    },
-  ]); // Initial placeholder data
-
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true; // Prevent setting state if component unmounts
+
     const fetchProjects = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const res = await fetch("/api/projects");
-        if (!res.ok) throw new Error("Failed to fetch");
+        const res = await fetch("/api/projects", {
+          cache: "no-store", // Prevent stale cache issues
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch projects");
+
         const data = await res.json();
-        setProjects(data);
+        if (isMounted) setProjects(data);
       } catch (err) {
-        console.error(err);
+        if (isMounted) setError(err.message);
+        console.error("Fetch projects error:", err);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchProjects();
+
+    return () => {
+      isMounted = false; // Cleanup to prevent memory leaks
+    };
   }, []);
 
   return (
-    <ProjectsContext.Provider value={{ projects, loading }}>
+    <ProjectsContext.Provider value={{ projects, loading, error }}>
       {children}
     </ProjectsContext.Provider>
   );

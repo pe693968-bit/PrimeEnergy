@@ -43,16 +43,17 @@ const NoProducts = () => (
 
 /* ---------------- Stat Card ---------------- */
 const StatCard = ({ title, value, icon: Icon, color = "gray" }) => (
-  <div className="bg-white rounded-2xl shadow-md p-6 flex items-center gap-4 border border-gray-100 hover:shadow-xl transition">
-    <div className={`p-3 rounded-xl ${color === "green" ? "bg-green-100" : color === "red" ? "bg-red-100" : "bg-gray-100"}`}>
+  <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-4 border border-gray-100 hover:shadow-xl transition">
+    <div className={`p-3 rounded-xl flex-shrink-0 ${color === "green" ? "bg-green-100" : color === "red" ? "bg-red-100" : "bg-gray-100"}`}>
       <Icon className={`w-6 h-6 ${color === "green" ? "text-green-600" : color === "red" ? "text-red-600" : "text-[#f2801c]"}`} />
     </div>
-    <div>
-      <p className="text-sm text-gray-500">{title}</p>
-      <p className="text-2xl font-bold text-gray-900">{value}</p>
+    <div className="text-center sm:text-left">
+      <p className="text-sm sm:text-base text-gray-500">{title}</p>
+      <p className="text-xl sm:text-2xl font-bold text-gray-900">{value}</p>
     </div>
   </div>
 );
+
 
 export default function ProductsPage() {
   const [stocks, setStocks] = useState([]);
