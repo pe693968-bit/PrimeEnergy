@@ -22,6 +22,8 @@ const ProjectPage = () => {
   const [project, setProject] = useState(null);
 
   useEffect(() => {
+    console.log(projects);
+    
     if (!loading && projects.length > 0) {
       const found = projects.find((p) => p._id === id);
       if (!found) {

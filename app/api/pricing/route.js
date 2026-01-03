@@ -2,7 +2,7 @@ import connect from "@/helpers/mongoose";
 import Pricing from "@/models/Pricing";
 
 // Connect to MongoDB
-connect();
+await connect();
 
 /* =========================
    GET /api/pricing

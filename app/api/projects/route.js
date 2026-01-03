@@ -2,7 +2,7 @@ import connect from "@/helpers/mongoose";
 import Projects from "@/models/Projects";
 
 // Connect to MongoDB
-connect();
+await connect();
 
 /* =========================
    GET /api/projects

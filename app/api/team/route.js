@@ -1,7 +1,7 @@
 import connect from "@/helpers/mongoose";
 import Team from "@/models/Team";
 // Connect to MongoDB
-connect();
+await connect();
 
 /* =========================
    GET /api/team

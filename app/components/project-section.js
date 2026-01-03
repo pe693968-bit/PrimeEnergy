@@ -20,9 +20,7 @@ const Project = () => {
     router.push(`/project/${id}`); // 👈 push to dynamic page
   };
 
-  useEffect(() => {
-    fetchProjects()
-  }, [])
+
   
 
   return (

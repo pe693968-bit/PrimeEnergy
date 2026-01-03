@@ -2,7 +2,7 @@ import connect from "@/helpers/mongoose";
 import Stock from "@/models/Stock";
 
 // Connect to MongoDB
-connect();
+await connect();
 
 // GET /api/stocks
 export async function GET(req) {

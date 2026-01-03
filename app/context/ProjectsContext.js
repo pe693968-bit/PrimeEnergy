@@ -31,6 +31,11 @@ export const ProjectsProvider = ({ children }) => {
       } 
     };
 
+
+      useEffect(() => {
+    fetchProjects()
+  }, [])
+
   return (
     <ProjectsContext.Provider value={{ projects, loading, error, fetchProjects }}>
       {children}
