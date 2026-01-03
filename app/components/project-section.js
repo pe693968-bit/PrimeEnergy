@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
@@ -12,11 +12,18 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const Project = () => {
-  const { projects, loading } = useProjects();
+  const { projects, loading, fetchProjects } = useProjects();
+
+  
     const router = useRouter(); // 👈 router
      const handleReadMore = (id) => {
     router.push(`/project/${id}`); // 👈 push to dynamic page
   };
+
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+  
 
   return (
     <div className="py-5 max-md:mt-20">

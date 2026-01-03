@@ -15,6 +15,8 @@ export async function GET(req) {
       status: 200,
     });
   } catch (err) {
+    console.log(err);
+    
     return new Response(
       JSON.stringify({
         message: "Failed to fetch projects",

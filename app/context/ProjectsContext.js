@@ -8,10 +8,8 @@ export const ProjectsProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    let isMounted = true; // Prevent setting state if component unmounts
 
-    const fetchProjects = async () => {
+  const fetchProjects = async () => {
       setLoading(true);
       setError(null);
 
@@ -23,24 +21,18 @@ export const ProjectsProvider = ({ children }) => {
         if (!res.ok) throw new Error("Failed to fetch projects");
 
         const data = await res.json();
-        if (isMounted) setProjects(data);
+        console.log(data);
+        
+        setProjects(data);
+        setLoading(false)
       } catch (err) {
-        if (isMounted) setError(err.message);
+        setLoading(false)
         console.error("Fetch projects error:", err);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
+      } 
     };
-
-    fetchProjects();
-
-    return () => {
-      isMounted = false; // Cleanup to prevent memory leaks
-    };
-  }, []);
 
   return (
-    <ProjectsContext.Provider value={{ projects, loading, error }}>
+    <ProjectsContext.Provider value={{ projects, loading, error, fetchProjects }}>
       {children}
     </ProjectsContext.Provider>
   );
