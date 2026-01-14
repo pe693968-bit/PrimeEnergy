@@ -11,85 +11,46 @@ import {
 
 const Topbar = () => {
   return (
-    <div className="topbar bg-[#0e0d1b] py-3 text-white w-full text-[15px]">
-        
-        <div className="
-          flex flex-col md:flex-row 
-          items-center md:items-center 
-          justify-center md:justify-between 
-          gap-3 md:gap-0 px-5 md:px-10 w-full
-        ">
+    <div className="hidden md:block w-full bg-[#0f172a] border-b border-white/5 text-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 h-10 flex items-center justify-between text-xs font-medium tracking-wide uppercase text-slate-400">
 
           {/* LEFT CONTACT */}
-          <div className="
-            contact flex
-            justify-center items-center 
-            gap-2 md:gap-6
-          ">
-            {/* Phone */}
-            <div className="phone flex items-center gap-2">
-              <FaPhone className="text-[20px]" />
-              0311 1800222
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 hover:text-white transition-colors cursor-default">
+              <FaPhone className="text-[#f2801c] text-sm" />
+              <span>+92 311 1800222</span>
             </div>
-
-            {/* Email */}
-            <div className="email flex items-center gap-2">
-              <FaEnvelope className="text-[20px]" />
-              primeenergy2024@gmail.com
+            <span className="text-slate-700">|</span>
+            <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+              <FaEnvelope className="text-[#f2801c] text-sm" />
+              <span>primeenergy2024@gmail.com</span>
             </div>
           </div>
 
-          {/* RIGHT SOCIAL ONLY */}
-          <div
-  className="
-    social flex justify-center max-md:hidden items-center
-    gap-4 md:gap-5
-  "
->
-  <a
-    href="https://www.facebook.com/profile.php?id=100064169706198&rdid=OgVRjLYRGQ2LBLJl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16vEHoTqxc%2F#"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaFacebookF className="text-[20px] hover:text-blue-600 cursor-pointer" />
-  </a>
-
-  <a
-    href=""
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaTwitter className="text-[20px] hover:text-sky-500 cursor-pointer" />
-  </a>
-
-  <a
-    href=""
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaInstagram className="text-[20px] hover:text-pink-500 cursor-pointer" />
-  </a>
-
-  <a
-    href=""
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaLinkedinIn className="text-[20px] hover:text-blue-700 cursor-pointer" />
-  </a>
-
-  <a
-    href=""
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaYoutube className="text-[20px] hover:text-red-600 cursor-pointer" />
-  </a>
-</div>
-
+          {/* RIGHT SOCIAL */}
+          <div className="flex items-center gap-5">
+             <span className="hidden lg:inline text-[10px] text-slate-600 font-bold">Follow Us</span>
+             <div className="flex items-center gap-4">
+                <a href="https://www.facebook.com/profile.php?id=100064169706198&rdid=OgVRjLYRGQ2LBLJl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16vEHoTqxc%2F#" target="_blank" rel="noopener noreferrer" className="hover:text-[#f2801c] transition-colors">
+                  <FaFacebookF size={12} />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[#f2801c] transition-colors">
+                  <FaTwitter size={12} />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[#f2801c] transition-colors">
+                  <FaInstagram size={12} />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[#f2801c] transition-colors">
+                  <FaLinkedinIn size={12} />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[#f2801c] transition-colors">
+                  <FaYoutube size={12} />
+                </a>
+             </div>
+          </div>
 
         </div>
-      </div>
+    </div>
   )
 }
 

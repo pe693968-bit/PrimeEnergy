@@ -309,43 +309,115 @@ export default function ProductsPage() {
           </a>
         </div>
 
+        {/* ================= SIDE PANEL BACKDROP ================= */}
+        <div 
+          className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
+            selectedStock ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setSelectedStock(null)}
+        />
+
         {/* ================= SIDE PANEL ================= */}
         <div
-          className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#f2801c] text-white shadow-2xl transform transition-transform duration-500 z-50 ${
+          className={`fixed top-0 right-0 h-full w-full sm:w-[500px] bg-white shadow-2xl transform transition-transform duration-500 ease-out z-50 flex flex-col ${
             selectedStock ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          {selectedStock && (
-            <div className="p-6 flex flex-col h-full">
-              <div className="flex justify-between items-center mb-6 border-b border-white/30 pb-3">
-                <h2 className="text-2xl font-semibold">{selectedStock.title}</h2>
-                <button className="cursor-pointer" onClick={() => setSelectedStock(null)}>
+          {selectedStock ? (
+            <>
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-white z-10">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900 line-clamp-1">{selectedStock.title}</h2>
+                  <p className="text-sm text-gray-500 mt-0.5">Stock Details</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedStock(null)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500 hover:text-gray-900"
+                >
                   <X size={24} />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto scrollbar-hide space-y-4 text-sm">
-                <p><strong>Type:</strong> {selectedStock.stockType}</p>
-                <p><strong>Quantity:</strong> {selectedStock.quantity}</p>
-                <p><strong>Status:</strong> {selectedStock.status}</p>
-                <p><strong>SKU:</strong> {selectedStock.sku || "-"}</p>
-                <p><strong>Location:</strong> {selectedStock.location || "-"}</p>
-                <p><strong>Supplier:</strong> {selectedStock.supplier || "-"}</p>
-                <p><strong>Price:</strong> ${selectedStock.price || 0}</p>
-                <p className="mt-6 text-white/90 leading-relaxed">
-                  {selectedStock.description || "No description available."}
-                </p>
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 p-6 space-y-8">
+                
+                {/* Hero / Visual Status */}
+                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-100 p-8 flex flex-col items-center justify-center text-center">
+                  <div className="p-4 bg-white rounded-2xl shadow-sm mb-4">
+                    <Layers className="w-12 h-12 text-[#f2801c]" />
+                  </div>
+                  <div className={`px-4 py-1.5 rounded-full text-sm font-semibold inline-flex items-center gap-2 ${
+                    selectedStock.status === "Available"
+                      ? "bg-emerald-100 text-emerald-800"
+                      : "bg-rose-100 text-rose-800"
+                  }`}>
+                    <span className={`w-2 h-2 rounded-full ${selectedStock.status === "Available" ? "bg-emerald-500" : "bg-rose-500"}`} />
+                    {selectedStock.status}
+                  </div>
+                  <p className="text-gray-500 text-sm mt-4">
+                    Product ID: <span className="font-mono text-gray-700">{selectedStock._id?.slice(-6).toUpperCase() || "N/A"}</span>
+                  </p>
+                </div>
+
+                {/* Key Details Grid */}
+                <div>
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Specifications</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                      <p className="text-xs text-gray-500 mb-1">Type</p>
+                      <p className="font-semibold text-gray-900">{selectedStock.stockType}</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                      <p className="text-xs text-gray-500 mb-1">Quantity</p>
+                      <p className="font-semibold text-gray-900">{selectedStock.quantity}</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                      <p className="text-xs text-gray-500 mb-1">Location</p>
+                      <p className="font-semibold text-gray-900">{selectedStock.location || "Main Warehouse"}</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                      <p className="text-xs text-gray-500 mb-1">Price</p>
+                      <p className="font-semibold text-[#f2801c]">{selectedStock.price ? `$${selectedStock.price}` : "On Request"}</p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-gray-50 border border-gray-100 col-span-2">
+                       <p className="text-xs text-gray-500 mb-1">SKU / Supplier</p>
+                       <div className="flex justify-between items-center">
+                          <p className="font-semibold text-gray-900">{selectedStock.sku || "N/A"}</p>
+                          <span className="text-gray-300">|</span>
+                          <p className="font-semibold text-gray-900">{selectedStock.supplier || "Direct Import"}</p>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Description */}
+                {selectedStock.description && (
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Description</h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      {selectedStock.description}
+                    </p>
+                  </div>
+                )}
               </div>
 
-              <a
-                 href={`https://wa.me/923111800222?text=Hello, I'm interested in ${encodeURIComponent(
-    selectedStock.title
-  )}`}
-                target="_blank"
-                className="mt-6 bg-white text-[#f2801c] text-center py-4 rounded-xl font-semibold hover:bg-gray-100 transition"
-              >
-                Contact via WhatsApp
-              </a>
+              {/* Footer CTA */}
+              <div className="p-6 border-t border-gray-100 bg-gray-50">
+                <a
+                  href={`https://wa.me/923111800222?text=Hello, I'm interested in ${encodeURIComponent(selectedStock.title)} (ID: ${selectedStock._id?.slice(-6).toUpperCase()})`}
+                  target="_blank"
+                  className="w-full flex items-center justify-center gap-3 bg-[#f2801c] text-white py-4 rounded-xl font-bold text-lg hover:bg-orange-600 shadow-lg shadow-orange-200 transition-all transform hover:-translate-y-1"
+                >
+                  <MessageCircle className="w-6 h-6" />
+                  Inquire via WhatsApp
+                </a>
+              </div>
+            </>
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-gray-400">
+               {/* Empty state purely for transition smoothness if needed */}
+               <span className="animate-pulse">Loading...</span>
             </div>
           )}
         </div>
